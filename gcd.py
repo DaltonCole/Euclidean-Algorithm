@@ -1,10 +1,13 @@
 # Programmer: Dalton Cole
 
-# Euclidean Algorithm: Given two integers a and b, a > b > 0
-# a = q * b + r, 0 <= r < b
-# GCD(a, b) = GCD(b, r)
-
-import sys
+def gcd(a, b):
+	if a == b:
+		return a
+	if a > b:
+		c = gcd(a - b, b)
+	else:
+		c = gcd(a, b - a)
+	return c
 
 print("Enter a: ")
 first_input = input()
@@ -14,26 +17,4 @@ print("Enter b: ")
 second_input = input()
 b = int(second_input)
 
-# Make sure a is greater than b, if not, swap
-if a < b:
-	a, b = b, a
-
-# a = q*b + r
-q = a // b
-r = a % b
-
-# Show work if -s flag is passed
-if "-s" in str(sys.argv):
-	print("\n" + str(a) + " = " + str(q) + " * " + str(b) + " + " + str(r))
-
-
-while r != 0:
-	# Make b be the new a AND r be the new b
-	a, b = b, r
-	q = a // b
-	r = a % b
-	# Show work if -s flag is passed
-	if "-s" in str(sys.argv):
-		print(str(a) + " = " + str(q) + " * " + str(b) + " + " + str(r))
-
-print("\nThe Greatest Common Divisor of " + first_input + " and " + second_input + " is: " + str(b))
+print("The GCD of " + str(a) + " and " + str(b) + " is: " + str(gcd(a,b)))
