@@ -1,11 +1,13 @@
 # Programmer: Dalton Cole
 
+# Uses the following principle:
+# gcd(a, b) = gcd(b, a mod b)
 def gcd(a, b):
 	if b == 0:
 		return a
 	else:
 		return gcd(b, a % b)
-		
+
 print("Enter a: ")
 first_input = input()
 a = int(first_input)
